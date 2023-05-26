@@ -1,11 +1,11 @@
 module.exports = {
 	title: "Go Monotone",
-	url: "https://example.com/",
+	url: "https://gomonotone.com/",
 	language: "en",
-	description: "I am writing about my experiences as a naval navel-gazer.",
+	description: "Go Monotone!",
 	author: {
-		name: "Your Name Here",
-		email: "youremailaddress@example.com",
-		url: "https://example.com/about-me/"
+		name: "Go Monotone",
+		email: "info@gomonotone.com",
+		url: "https://gomonotone.com/"
 	}
 }
