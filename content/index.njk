@@ -8,8 +8,63 @@ layout: layouts/home.njk
 <div class="card-group"></div>
 
 <div class="buttons">
-	<button>next</button>
-	<button>previous</button>
+	<button id="next">next</button>
+	<button id="previous">previous</button>
 </div>
 
 </div>
+
+<script>
+	// Declare 'bottles' JSON object variable
+const bottles = {
+  "entries": [
+    {
+      "background": "blue",
+      "bottle": "teal",
+      "link": "https://example.com/product1"
+    },
+    {
+      "background": "green",
+      "bottle": "grey",
+      "link": "https://example.com/product2"
+    },
+    {
+      "background": "red",
+      "bottle": "pink",
+      "link": "https://example.com/product3"
+    }
+  ]
+};
+
+// Get DOM elements
+const wrapper = document.querySelector('.wrapper');
+const bottleElement = document.querySelector('.bottle');
+const previousButton = document.getElementById('previous');
+const nextButton = document.getElementById('next');
+
+// Initialize index to track current entry
+let currentIndex = 0;
+
+// Set initial background and bottle values
+wrapper.style.background = bottles.entries[currentIndex].background;
+bottleElement.style.background = bottles.entries[currentIndex].bottle;
+
+// Event listener for 'previous' button click
+previousButton.addEventListener('click', () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    wrapper.style.background = bottles.entries[currentIndex].background;
+    bottleElement.style.background = bottles.entries[currentIndex].bottle;
+  }
+});
+
+// Event listener for 'next' button click
+nextButton.addEventListener('click', () => {
+  if (currentIndex < bottles.entries.length - 1) {
+    currentIndex++;
+    wrapper.style.background = bottles.entries[currentIndex].background;
+    bottleElement.style.background = bottles.entries[currentIndex].bottle;
+  }
+});
+
+</script>
