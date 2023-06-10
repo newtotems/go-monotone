@@ -93,9 +93,6 @@ a[href]:active {
 	color: var(--text-color-link-active);
 }
 
-header {
-	border-bottom: 1px dashed var(--color-gray-20);
-}
 header:after {
 	content: "";
 	display: table;
@@ -297,4 +294,13 @@ h2 + .header-anchor {
 	max-width: 2160px;
 	max-height: 3840px;
 	background: red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.card-group {
+width: 100px;
+height: 200px;
+background-color: white;
 }
