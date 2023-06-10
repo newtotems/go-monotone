@@ -14,23 +14,22 @@ layout: layouts/home.njk
 
 </div>
 
-<script>
-	// Declare 'bottles' JSON object variable
+<script>// Declare 'bottles' JSON object variable
 const bottles = {
   "entries": [
     {
       "background": "blue",
-      "bottle": "teal",
+      "bottle": "glass",
       "link": "https://example.com/product1"
     },
     {
       "background": "green",
-      "bottle": "grey",
+      "bottle": "plastic",
       "link": "https://example.com/product2"
     },
     {
       "background": "red",
-      "bottle": "pink",
+      "bottle": "metal",
       "link": "https://example.com/product3"
     }
   ]
@@ -49,12 +48,36 @@ let currentIndex = 0;
 wrapper.style.background = bottles.entries[currentIndex].background;
 bottleElement.style.background = bottles.entries[currentIndex].bottle;
 
+// Function to add fading animation class
+const addFadeAnimation = () => {
+  wrapper.classList.add('fade-animation');
+  bottleElement.classList.add('fade-animation');
+};
+
+// Function to remove fading animation class
+const removeFadeAnimation = () => {
+  wrapper.classList.remove('fade-animation');
+  bottleElement.classList.remove('fade-animation');
+};
+
+// Function to handle entry change
+const changeEntry = () => {
+  addFadeAnimation();
+
+  setTimeout(() => {
+    // Update background and bottle values
+    wrapper.style.background = bottles.entries[currentIndex].background;
+    bottleElement.style.background = bottles.entries[currentIndex].bottle;
+
+    removeFadeAnimation();
+  }, 500); // Modify the delay (in milliseconds) based on the duration of your CSS animation
+};
+
 // Event listener for 'previous' button click
 previousButton.addEventListener('click', () => {
   if (currentIndex > 0) {
     currentIndex--;
-    wrapper.style.background = bottles.entries[currentIndex].background;
-    bottleElement.style.background = bottles.entries[currentIndex].bottle;
+    changeEntry();
   }
 });
 
@@ -62,8 +85,7 @@ previousButton.addEventListener('click', () => {
 nextButton.addEventListener('click', () => {
   if (currentIndex < bottles.entries.length - 1) {
     currentIndex++;
-    wrapper.style.background = bottles.entries[currentIndex].background;
-    bottleElement.style.background = bottles.entries[currentIndex].bottle;
+    changeEntry();
   }
 });
 

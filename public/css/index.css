@@ -325,6 +325,15 @@ align-items: center;
     background-size: contain;
 }
 
+.fade-animation {
+	opacity: 0;
+	transition: opacity 0.5s ease;
+  }
+  
+  .fade-animation.fade-in {
+	opacity: 1;
+  }
+
 @media (max-height: 600px) {
 	.bottle {
 	  height: 70vh; /* Set the bottle's height to a maximum of 90% of the viewport height if the screen height is smaller than 600px */
