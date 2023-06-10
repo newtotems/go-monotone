@@ -306,12 +306,14 @@ background-color: white;
 }
 
 .bottle {
-	background: black;
 	position: absolute;
-	z-index: 100;
-	width: 300px;
-	height: 600px;
-	background-image: "../img/bottle.png"
+    z-index: 100;
+    width: 300px;
+    height: 600px;
+    background-image: url(../img/bottle.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 @media (max-height: 600px) {
