@@ -304,6 +304,22 @@ height: 100%;
 background-color: white;
 }
 
+.card-group::after {
+	content: "";
+	width: 100px;
+	height: 100px;
+	z-index: 99;
+	background-color: purple;
+	}
+
+.card-group::after {
+content: "";
+width: 100px;
+height: 100px;
+z-index: 101;
+background-color: green;
+}
+
 .bottle {
 	position: absolute;
     z-index: 100;
