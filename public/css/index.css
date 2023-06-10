@@ -293,7 +293,6 @@ h2 + .header-anchor {
 	height: 100vh; /* Set the wrapper's height to 100% of the viewport height */
 	max-width: 2160px;
 	max-height: 3840px;
-	background: red;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -318,6 +317,6 @@ background-color: white;
 
 @media (max-height: 600px) {
 	.bottle {
-	  height: 90vh; /* Set the bottle's height to a maximum of 90% of the viewport height if the screen height is smaller than 600px */
+	  height: 70vh; /* Set the bottle's height to a maximum of 90% of the viewport height if the screen height is smaller than 600px */
 	}
   }
