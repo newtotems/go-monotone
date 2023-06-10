@@ -304,3 +304,10 @@ width: 100px;
 height: 200px;
 background-color: white;
 }
+
+.bottle {
+	background: black;
+	z-index: 100;
+	width: 50px;
+	height: 100px;
+}
