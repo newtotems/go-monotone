@@ -93,13 +93,6 @@ a[href]:active {
 	color: var(--text-color-link-active);
 }
 
-main {
-	padding: 1rem;
-}
-main :first-child {
-	margin-top: 0;
-}
-
 header {
 	border-bottom: 1px dashed var(--color-gray-20);
 }
