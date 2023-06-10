@@ -308,21 +308,11 @@ align-items: center;
 }
 
 .card-group::before {
-	content: "";
-	width: 100px;
-	height: 100px;
-	z-index: 99;
-	background-color: purple;
-	margin-left: 50px;
+
 	}
 
 .card-group::after {
-content: "";
-width: 100px;
-height: 100px;
-z-index: 101;
-background-color: green;
-margin-left: -50px;
+
 }
 
 .bottle {
