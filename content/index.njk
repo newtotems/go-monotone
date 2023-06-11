@@ -12,6 +12,7 @@ layout: layouts/home.njk
   </div>
 </div>
 
+
 <script>
   // Declare 'bottles' JSON object variable
   const bottles = {
@@ -49,29 +50,46 @@ layout: layouts/home.njk
 
   // Function to handle entry change
   const changeEntry = () => {
-    // Fade out the current card
-    cardGroup.style.opacity = 0;
-
-    // Fade in the next card after the fade-out animation completes
-    setTimeout(() => {
-      // Update background and bottle values
-      cardGroup.style.backgroundImage = bottles.entries[currentIndex].background;
-      bottle.style.backgroundColor = bottles.entries[currentIndex].bottle;
-
-      // Fade in the next card
-      cardGroup.style.opacity = 1;
-    }, 500); // Modify the delay (in milliseconds) based on the duration of your fade-in animation
+    // Update background and bottle values
+    cardGroup.style.backgroundImage = bottles.entries[currentIndex].background;
+    bottle.style.backgroundColor = bottles.entries[currentIndex].bottle;
   };
 
   // Event listener for 'previous' button click
   previousButton.addEventListener('click', () => {
+    // Fade out the current card and bottle simultaneously
+    cardGroup.style.opacity = 0;
+    bottle.style.opacity = 0;
+
+    // Update the index for the previous entry
     currentIndex = (currentIndex === 0) ? bottles.entries.length - 1 : currentIndex - 1;
-    changeEntry();
+
+    // Update the card and bottle values after the fade-out animation completes
+    setTimeout(() => {
+      changeEntry();
+
+      // Fade in the new card and bottle simultaneously
+      cardGroup.style.opacity = 1;
+      bottle.style.opacity = 1;
+    }, 500); // Modify the delay (in milliseconds) based on the duration of your fade-out animation
   });
 
   // Event listener for 'next' button click
   nextButton.addEventListener('click', () => {
+    // Fade out the current card and bottle simultaneously
+    cardGroup.style.opacity = 0;
+    bottle.style.opacity = 0;
+
+    // Update the index for the next entry
     currentIndex = (currentIndex === bottles.entries.length - 1) ? 0 : currentIndex + 1;
-    changeEntry();
+
+    // Update the card and bottle values after the fade-out animation completes
+    setTimeout(() => {
+      changeEntry();
+
+      // Fade in the new card and bottle simultaneously
+      cardGroup.style.opacity = 1;
+      bottle.style.opacity = 1;
+    }, 500); // Modify the delay (in milliseconds) based on the duration of your fade-out animation
   });
 </script>
