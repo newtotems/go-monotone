@@ -2,93 +2,94 @@
 layout: layouts/home.njk
 ---
 <div class="wrapper">
-
-
-
-<div class="card-group">
-	<div class="bottle"></div>
+  <div class="card-group"></div>
+  <div class="buttons">
+    <button id="previous">previous</button>
+    <button id="next">next</button>
+  </div>
 </div>
 
-<div class="buttons">
-		<button id="previous">previous</button>
-		<button id="next">next</button>
-</div>
+<script>
+  // Declare 'bottles' JSON object variable
+  const bottles = {
+    "entries": [
+      {
+        "background": "url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+        "bottle": "teal",
+        "link": "https://example.com/product1"
+      },
+      {
+        "background": "url('https://images.pexels.com/photos/19670/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+        "bottle": "blue",
+        "link": "https://example.com/product2"
+      },
+      {
+        "background": "url('https://images.pexels.com/photos/963278/pexels-photo-963278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+        "bottle": "pink",
+        "link": "https://example.com/product3"
+      }
+    ]
+  };
 
-</div>
+  // Get DOM elements
+  const cardGroup = document.querySelector('.card-group');
+  const previousButton = document.getElementById('previous');
+  const nextButton = document.getElementById('next');
 
-<script>// Declare 'bottles' JSON object variable
-const bottles = {
-  "entries": [
-    {
-      "background": "url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
-      "bottle": "teal",
-      "link": "https://example.com/product1"
-    },
-    {
-      "background": "url('https://images.pexels.com/photos/19670/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
-      "bottle": "blue",
-      "link": "https://example.com/product2"
-    },
-    {
-      "background": "url('https://images.pexels.com/photos/963278/pexels-photo-963278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
-      "bottle": "pink",
-      "link": "https://example.com/product3"
+  // Initialize index to track current entry
+  let currentIndex = 0;
+
+  // Set initial background and bottle values
+  cardGroup.style.backgroundImage = bottles.entries[currentIndex].background;
+  cardGroup.style.backgroundColor = bottles.entries[currentIndex].bottle;
+
+  // Function to add fading animation class
+  const addFadeAnimation = () => {
+    cardGroup.classList.add('fade-animation');
+  };
+
+  // Function to remove fading animation class
+  const removeFadeAnimation = () => {
+    cardGroup.classList.remove('fade-animation');
+  };
+
+  // Function to handle entry change
+  const changeEntry = () => {
+    addFadeAnimation();
+
+    setTimeout(() => {
+      // Update background and bottle values
+      cardGroup.style.backgroundImage = bottles.entries[currentIndex].background;
+      cardGroup.style.backgroundColor = bottles.entries[currentIndex].bottle;
+
+      removeFadeAnimation();
+    }, 500); // Modify the delay (in milliseconds) based on the duration of your CSS animation
+  };
+
+  // Event listener for 'previous' button click
+  previousButton.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      changeEntry();
     }
-  ]
-};
+  });
 
-// Get DOM elements
-const wrapper = document.querySelector('.wrapper');
-const bottleElement = document.querySelector('.bottle');
-const previousButton = document.getElementById('previous');
-const nextButton = document.getElementById('next');
-
-// Initialize index to track current entry
-let currentIndex = 0;
-
-// Set initial background and bottle values
-card-group.style.background = bottles.entries[currentIndex].background;
-bottleElement.style.background = bottles.entries[currentIndex].bottle;
-
-// Function to add fading animation class
-const addFadeAnimation = () => {
-  card-group.classList.add('fade-animation');
-  bottleElement.classList.add('fade-animation');
-};
-
-// Function to remove fading animation class
-const removeFadeAnimation = () => {
-  card-group.classList.remove('fade-animation');
-  bottleElement.classList.remove('fade-animation');
-};
-
-// Function to handle entry change
-const changeEntry = () => {
-  addFadeAnimation();
-
-  setTimeout(() => {
-    // Update background and bottle values
-    card-group.style.background = bottles.entries[currentIndex].background;
-    bottleElement.style.background = bottles.entries[currentIndex].bottle;
-
-    removeFadeAnimation();
-  }, 500); // Modify the delay (in milliseconds) based on the duration of your CSS animation
-};
-
-// Event listener for 'previous' button click
-previousButton.addEventListener('click', () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    changeEntry();
-  }
-});
-
-// Event listener for 'next' button click
-nextButton.addEventListener('click', () => {
-  if (currentIndex < bottles.entries.length - 1) {
-    currentIndex++;
-    changeEntry();
-  }
-});
-
+  // Event listener for 'next' button click
+  nextButton.addEventListener('click', () => {
+    if (currentIndex < bottles.entries.length - 1) {
+      currentIndex++;
+      changeEntry();
+    }
+  });
 </script>
+
+<style>
+  .fade-animation {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .fade-animation.fade-in {
+    opacity: 1;
+  }
+</style>
