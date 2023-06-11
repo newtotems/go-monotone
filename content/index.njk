@@ -2,9 +2,7 @@
 layout: layouts/home.njk
 ---
 <div class="wrapper">
-  <div class="card-group">
-	<div class="bottle"></div>
-  </div>
+  <div class="card-group"></div>
   <div class="buttons">
     <button id="previous">previous</button>
     <button id="next">next</button>
@@ -70,18 +68,14 @@ layout: layouts/home.njk
 
   // Event listener for 'previous' button click
   previousButton.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      changeEntry();
-    }
+    currentIndex = (currentIndex === 0) ? bottles.entries.length - 1 : currentIndex - 1;
+    changeEntry();
   });
 
   // Event listener for 'next' button click
   nextButton.addEventListener('click', () => {
-    if (currentIndex < bottles.entries.length - 1) {
-      currentIndex++;
-      changeEntry();
-    }
+    currentIndex = (currentIndex === bottles.entries.length - 1) ? 0 : currentIndex + 1;
+    changeEntry();
   });
 </script>
 
