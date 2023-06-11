@@ -4,7 +4,7 @@ layout: layouts/home.njk
 <div class="wrapper">
 	<div class="btl"></div>
   <div class="card-group">
-	<div class="bottle"></div>
+	  <div class="bottle"></div>
   </div>
   <div class="buttons">
     <button id="previous">previous</button>
@@ -36,6 +36,7 @@ layout: layouts/home.njk
 
   // Get DOM elements
   let cardGroup = document.querySelector('.card-group');
+  let bottle = document.querySelector('.bottle');
   const previousButton = document.getElementById('previous');
   const nextButton = document.getElementById('next');
 
@@ -44,31 +45,22 @@ layout: layouts/home.njk
 
   // Set initial background and bottle values
   cardGroup.style.backgroundImage = bottles.entries[currentIndex].background;
-  cardGroup.style.backgroundColor = bottles.entries[currentIndex].bottle;
+  bottle.style.backgroundColor = bottles.entries[currentIndex].bottle;
 
   // Function to handle entry change
   const changeEntry = () => {
-    // Create a new card element for the next entry
-    const nextCard = document.createElement('div');
-    nextCard.classList.add('card-group');
-    nextCard.style.backgroundImage = bottles.entries[currentIndex].background;
-    nextCard.style.backgroundColor = bottles.entries[currentIndex].bottle;
+    // Fade out the current card
+    cardGroup.style.opacity = 0;
 
-    if (cardGroup) {
-      // Append the new card element after the current card element
-      cardGroup.parentNode.insertBefore(nextCard, cardGroup.nextSibling);
+    // Fade in the next card after the fade-out animation completes
+    setTimeout(() => {
+      // Update background and bottle values
+      cardGroup.style.backgroundImage = bottles.entries[currentIndex].background;
+      bottle.style.backgroundColor = bottles.entries[currentIndex].bottle;
 
-      // Fade out the current card
-      cardGroup.style.opacity = 0;
-
-      // Remove the current card after the fade-out animation completes
-      setTimeout(() => {
-        cardGroup.remove();
-      }, 500); // Modify the delay (in milliseconds) based on the duration of your fade-out animation
-    }
-
-    // Update the reference to the new card element
-    cardGroup = nextCard;
+      // Fade in the next card
+      cardGroup.style.opacity = 1;
+    }, 500); // Modify the delay (in milliseconds) based on the duration of your fade-in animation
   };
 
   // Event listener for 'previous' button click
