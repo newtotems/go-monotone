@@ -3,9 +3,11 @@ layout: layouts/home.njk
 ---
 <div class="wrapper">
 
-<div class="bottle"></div>
 
-<div class="card-group"></div>
+
+<div class="card-group">
+	<div class="bottle"></div>
+</div>
 
 <div class="buttons">
 		<button id="previous">previous</button>
@@ -45,18 +47,18 @@ const nextButton = document.getElementById('next');
 let currentIndex = 0;
 
 // Set initial background and bottle values
-wrapper.style.background = bottles.entries[currentIndex].background;
+card-group.style.background = bottles.entries[currentIndex].background;
 bottleElement.style.background = bottles.entries[currentIndex].bottle;
 
 // Function to add fading animation class
 const addFadeAnimation = () => {
-  wrapper.classList.add('fade-animation');
+  card-group.classList.add('fade-animation');
   bottleElement.classList.add('fade-animation');
 };
 
 // Function to remove fading animation class
 const removeFadeAnimation = () => {
-  wrapper.classList.remove('fade-animation');
+  card-group.classList.remove('fade-animation');
   bottleElement.classList.remove('fade-animation');
 };
 
@@ -66,7 +68,7 @@ const changeEntry = () => {
 
   setTimeout(() => {
     // Update background and bottle values
-    wrapper.style.background = bottles.entries[currentIndex].background;
+    card-group.style.background = bottles.entries[currentIndex].background;
     bottleElement.style.background = bottles.entries[currentIndex].bottle;
 
     removeFadeAnimation();
