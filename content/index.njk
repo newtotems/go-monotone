@@ -2,6 +2,7 @@
 layout: layouts/home.njk
 ---
 <div class="wrapper">
+	<div class="btl"></div>
   <div class="card-group">
 	<div class="bottle"></div>
   </div>
@@ -45,27 +46,27 @@ layout: layouts/home.njk
   cardGroup.style.backgroundImage = bottles.entries[currentIndex].background;
   cardGroup.style.backgroundColor = bottles.entries[currentIndex].bottle;
 
-  // Function to add fading animation class
-  const addFadeAnimation = () => {
-    cardGroup.classList.add('fade-animation');
-  };
-
-  // Function to remove fading animation class
-  const removeFadeAnimation = () => {
-    cardGroup.classList.remove('fade-animation');
-  };
-
   // Function to handle entry change
   const changeEntry = () => {
-    addFadeAnimation();
+    // Create a new card element for the next entry
+    const nextCard = document.createElement('div');
+    nextCard.classList.add('card-group');
+    nextCard.style.backgroundImage = bottles.entries[currentIndex].background;
+    nextCard.style.backgroundColor = bottles.entries[currentIndex].bottle;
 
+    // Append the new card element after the current card element
+    cardGroup.parentNode.insertBefore(nextCard, cardGroup.nextSibling);
+
+    // Fade out the current card
+    cardGroup.style.opacity = 0;
+
+    // Remove the current card after the fade-out animation completes
     setTimeout(() => {
-      // Update background and bottle values
-      cardGroup.style.backgroundImage = bottles.entries[currentIndex].background;
-      cardGroup.style.backgroundColor = bottles.entries[currentIndex].bottle;
+      cardGroup.remove();
+    }, 500); // Modify the delay (in milliseconds) based on the duration of your fade-out animation
 
-      removeFadeAnimation();
-    }, 500); // Modify the delay (in milliseconds) based on the duration of your CSS animation
+    // Update the reference to the new card element
+    cardGroup = nextCard;
   };
 
   // Event listener for 'previous' button click
@@ -82,12 +83,8 @@ layout: layouts/home.njk
 </script>
 
 <style>
-  .fade-animation {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-
-  .fade-animation.fade-in {
+  .card-group {
     opacity: 1;
+    transition: opacity 0.5s ease;
   }
 </style>
