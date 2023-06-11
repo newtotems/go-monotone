@@ -54,16 +54,18 @@ layout: layouts/home.njk
     nextCard.style.backgroundImage = bottles.entries[currentIndex].background;
     nextCard.style.backgroundColor = bottles.entries[currentIndex].bottle;
 
-    // Append the new card element after the current card element
-    cardGroup.parentNode.insertBefore(nextCard, cardGroup.nextSibling);
+    if (cardGroup) {
+      // Append the new card element after the current card element
+      cardGroup.parentNode.insertBefore(nextCard, cardGroup.nextSibling);
 
-    // Fade out the current card
-    cardGroup.style.opacity = 0;
+      // Fade out the current card
+      cardGroup.style.opacity = 0;
 
-    // Remove the current card after the fade-out animation completes
-    setTimeout(() => {
-      cardGroup.remove();
-    }, 500); // Modify the delay (in milliseconds) based on the duration of your fade-out animation
+      // Remove the current card after the fade-out animation completes
+      setTimeout(() => {
+        cardGroup.remove();
+      }, 500); // Modify the delay (in milliseconds) based on the duration of your fade-out animation
+    }
 
     // Update the reference to the new card element
     cardGroup = nextCard;
