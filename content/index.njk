@@ -35,7 +35,7 @@ layout: layouts/home.njk
   };
 
   // Get DOM elements
-  const cardGroup = document.querySelector('.card-group');
+  let cardGroup = document.querySelector('.card-group');
   const previousButton = document.getElementById('previous');
   const nextButton = document.getElementById('next');
 
@@ -81,10 +81,3 @@ layout: layouts/home.njk
     changeEntry();
   });
 </script>
-
-<style>
-  .card-group {
-    opacity: 1;
-    transition: opacity 0.5s ease;
-  }
-</style>
